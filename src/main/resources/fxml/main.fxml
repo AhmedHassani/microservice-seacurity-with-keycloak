@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+
+<AnchorPane fx:id="mainLayout" prefHeight="516.0" prefWidth="644.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.iraqsofit.speedoo.ui.ViewController">
+   <children>
+      <BorderPane fx:id="borderpan" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <top>
+            <HBox fx:id="pane_error" alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="0.0" prefWidth="644.0" style="-fx-background-color: #9dc869#9dc869;" BorderPane.alignment="CENTER_RIGHT">
+               <children>
+                  <FontAwesomeIconView fx:id="icon_close" fill="WHITE" glyphName="CLOSE" onMouseClicked="#CloseError">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </FontAwesomeIconView>
+                  <Label fx:id="massage_error" textFill="WHITE">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+               <BorderPane.margin>
+                  <Insets />
+               </BorderPane.margin>
+            </HBox>
+         </top></BorderPane>
+      <HBox alignment="CENTER_RIGHT" layoutX="438.0" layoutY="416.0" prefHeight="50.0" prefWidth="644.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#Close" prefHeight="35.0" prefWidth="35.0" styleClass="icon_bar">
+               <HBox.margin>
+                  <Insets left="5.0" right="5.0" />
+               </HBox.margin>
+               <children>
+                  <FontAwesomeIconView fill="WHITE" glyphName="CLOSE" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" layoutX="602.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#Down" prefHeight="35.0" prefWidth="35.0" styleClass="icon_bar">
+               <HBox.margin>
+                  <Insets left="5.0" right="5.0" />
+               </HBox.margin>
+               <children>
+                  <FontAwesomeIconView fill="WHITE" glyphName="CHEVRON_DOWN" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" layoutX="550.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#Setting" prefHeight="35.0" prefWidth="35.0" styleClass="icon_bar">
+               <HBox.margin>
+                  <Insets left="5.0" right="5.0" />
+               </HBox.margin>
+               <children>
+                  <FontAwesomeIconView fill="WHITE" glyphName="COG" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" layoutX="498.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#Home" prefHeight="35.0" prefWidth="35.0" styleClass="icon_bar">
+               <HBox.margin>
+                  <Insets left="5.0" right="5.0" />
+               </HBox.margin>
+               <children>
+                  <FontAwesomeIconView fill="WHITE" glyphName="INTERNET_EXPLORER" />
+               </children>
+            </HBox>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

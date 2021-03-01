@@ -1,0 +1,25 @@
+.root{
+  -fx-background-color: #222222;
+}
+.icon_bar{
+  -fx-background-radius: 45 45 45 45;
+  -fx-background-color: #2D2D2D;
+}
+.icon_bar:hover{
+  -fx-border-color:#9dc869;
+  -fx-border-radius: 45 45 45 45;
+  -fx-translate-y:-5;
+}
+.but{
+    -fx-background-radius: 75 75 75 75;
+    -fx-background-color: #FFF;
+    -fx-border-color:#9dc869;
+    -fx-border-width:2;
+    -fx-border-radius: 75 75 75 75;
+}
+.filed{
+    -fx-background-radius: 0 10 10 0;
+}
+.panefiled{
+    -fx-background-radius: 10 0 0 10;
+}
