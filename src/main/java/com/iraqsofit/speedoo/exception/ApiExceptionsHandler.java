@@ -11,11 +11,12 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @ControllerAdvice
 public class ApiExceptionsHandler extends ResponseEntityExceptionHandler {
 
-    @ExceptionHandler(NotFoundException.class)
-    public ResponseEntity<ErrorMassage> handelApiException(NotFoundException notFoundException, WebRequest webRequest){
-        ErrorMassage errorMassage =new ErrorMassage(notFoundException.getMessage(),webRequest.getDescription(false));
-        return new ResponseEntity<>(errorMassage,notFoundException.getHttpStatus());
+    @ExceptionHandler(ApiBaseException.class)
+    public ResponseEntity<ErrorMassage> handelApiException(ApiBaseException exception , WebRequest webRequest){
+        ErrorMassage errorMassage =new ErrorMassage(exception.getMessage(),webRequest.getDescription(false));
+        return new ResponseEntity<>(errorMassage,exception.getStatusCode());
     }
+
 
 
 }

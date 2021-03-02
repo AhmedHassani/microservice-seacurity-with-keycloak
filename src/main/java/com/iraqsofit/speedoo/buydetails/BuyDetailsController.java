@@ -27,17 +27,17 @@ public class BuyDetailsController {
 
     @DeleteMapping("/del/{id}")
     public ResponseEntity deleteBuyDetails(@PathVariable(value = "id") long id) {
-        return new ResponseEntity<>(service.deleteBuyDetails(id), HttpStatus.OK);
+        return new ResponseEntity<>(service.deleteBuyDetails(id), HttpStatus.NO_CONTENT);
     }
 
     @PostMapping("/post")
     public ResponseEntity<BuyDetails> AddBuyDetails(@RequestBody BuyDetails model) {
-        return new ResponseEntity<>(service.InsertBuyDetails(model), HttpStatus.OK);
+        return new ResponseEntity<>(service.InsertBuyDetails(model), HttpStatus.CREATED);
     }
 
     @PostMapping("/update/{id}")
     public ResponseEntity<BuyDetails> updateBuyDetails(@RequestBody BuyDetails model, @PathVariable(value = "id") long id) {
-        return new ResponseEntity<>(service.updateBuyDetails(model, id), HttpStatus.OK);
+        return new ResponseEntity<>(service.updateBuyDetails(model, id), HttpStatus.CREATED);
     }
 
 

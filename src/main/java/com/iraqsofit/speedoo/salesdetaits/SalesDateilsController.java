@@ -27,17 +27,17 @@ public class SalesDateilsController {
 
     @DeleteMapping("/del/{id}")
     public ResponseEntity delete(@PathVariable(value = "id") long id) {
-        return new ResponseEntity<>(service.deleteSalesDateils(id), HttpStatus.OK);
+        return new ResponseEntity<>(service.deleteSalesDateils(id), HttpStatus.NO_CONTENT);
     }
 
     @PostMapping("/post")
     public ResponseEntity<SalesDetails> Add(@RequestBody SalesDetails model) {
-        return new ResponseEntity<>(service.InsertSalesDateils(model), HttpStatus.OK);
+        return new ResponseEntity<>(service.InsertSalesDateils(model), HttpStatus.CREATED);
     }
 
     @PostMapping("/update/{id}")
     public ResponseEntity<SalesDetails> update(@RequestBody SalesDetails model, @PathVariable(value = "id") long id) {
-        return new ResponseEntity<>(service.updateSalesDateils(model, id), HttpStatus.OK);
+        return new ResponseEntity<>(service.updateSalesDateils(model, id), HttpStatus.CREATED);
     }
 
 

@@ -27,16 +27,16 @@ public class StoreController {
 
     @DeleteMapping("/del/{id}")
     public ResponseEntity deleteStore(@PathVariable(value = "id") long id){
-        return new ResponseEntity<>(service.deleteStoreBox(id),HttpStatus.OK);
+        return new ResponseEntity<>(service.deleteStoreBox(id),HttpStatus.NO_CONTENT);
     }
 
     @PostMapping("/post")
     public ResponseEntity<StoreBox> AddStoreBox(@RequestBody StoreBox storeBox){
-        return new ResponseEntity<>(service.InsertStoreBox(storeBox),HttpStatus.OK);
+        return new ResponseEntity<>(service.InsertStoreBox(storeBox),HttpStatus.CREATED);
     }
     @PostMapping("/update/{id}")
     public ResponseEntity<StoreBox> updateStoreBox(@RequestBody StoreBox storeBox,@PathVariable(value = "id") long id){
-        return new ResponseEntity<>(service.updateStoreBox(storeBox,id),HttpStatus.OK);
+        return new ResponseEntity<>(service.updateStoreBox(storeBox,id),HttpStatus.CREATED);
     }
 
 

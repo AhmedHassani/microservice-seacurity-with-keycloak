@@ -28,17 +28,17 @@ public class SalesController {
 
     @DeleteMapping("/del/{id}")
     public ResponseEntity deleteSales(@PathVariable(value = "id") String id) {
-        return new ResponseEntity<>(service.deleteSales(id), HttpStatus.OK);
+        return new ResponseEntity<>(service.deleteSales(id), HttpStatus.NO_CONTENT);
     }
 
     @PostMapping("/post")
     public ResponseEntity<Sales> AddSales(@RequestBody Sales model) {
-        return new ResponseEntity<>(service.InsertSales(model), HttpStatus.OK);
+        return new ResponseEntity<>(service.InsertSales(model), HttpStatus.CREATED);
     }
 
     @PostMapping("/update/{id}")
     public ResponseEntity<Sales> updateSales(@RequestBody Sales model, @PathVariable(value = "id") String id) {
-        return new ResponseEntity<>(service.updateSales(model, id), HttpStatus.OK);
+        return new ResponseEntity<>(service.updateSales(model, id), HttpStatus.CREATED);
     }
 
 

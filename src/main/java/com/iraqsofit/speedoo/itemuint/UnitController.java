@@ -26,17 +26,17 @@ public class UnitController {
 
     @DeleteMapping("del/{id}")
     public ResponseEntity<Boolean> DeleteUnit(@PathVariable(value = "id") long id){
-        return new ResponseEntity<>(unitService.deleteUnit(id), HttpStatus.OK);
+        return new ResponseEntity<>(unitService.deleteUnit(id), HttpStatus.NO_CONTENT);
     }
 
     @PostMapping("/post")
     public ResponseEntity<Unit>  AddUnit(@RequestBody Unit unit){
-        return new ResponseEntity(unitService.InsertUnit(unit),HttpStatus.OK);
+        return new ResponseEntity(unitService.InsertUnit(unit),HttpStatus.CREATED);
     }
 
     @PostMapping("update/{id}")
     public ResponseEntity<Unit>  updateUnit(@RequestBody  Unit unit,@PathVariable(value = "id") long id){
-        return  new ResponseEntity<>(unitService.updateUnit(unit,id),HttpStatus.OK);
+        return  new ResponseEntity<>(unitService.updateUnit(unit,id),HttpStatus.CREATED);
     }
 
     @GetMapping("itemcode/{code}")

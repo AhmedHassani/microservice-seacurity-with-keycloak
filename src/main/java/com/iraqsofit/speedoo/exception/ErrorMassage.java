@@ -1,10 +1,13 @@
 package com.iraqsofit.speedoo.exception;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 
 public class ErrorMassage {
     private String massage;
     private String uri;
+    @JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "yyyy-MM-dd HH:mm:ss")
     private Date date;
 
     public ErrorMassage() {

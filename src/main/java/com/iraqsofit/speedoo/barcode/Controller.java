@@ -27,17 +27,17 @@ public class Controller {
 
     @DeleteMapping("/del/{id}")
     public ResponseEntity deleteBarCode(@PathVariable(value = "id") long id) {
-        return new ResponseEntity<>(service.deleteBarCode(id), HttpStatus.OK);
+        return new ResponseEntity<>(service.deleteBarCode(id), HttpStatus.NO_CONTENT);
     }
 
     @PostMapping("/post")
     public ResponseEntity<BarCode> AddBarCode(@RequestBody BarCode model) {
-        return new ResponseEntity<>(service.InsertBarCode(model), HttpStatus.OK);
+        return new ResponseEntity<>(service.InsertBarCode(model), HttpStatus.CREATED);
     }
 
     @PostMapping("/update/{id}")
     public ResponseEntity<BarCode> updateBarCode(@RequestBody BarCode model, @PathVariable(value = "id") long id) {
-        return new ResponseEntity<>(service.updateBarCode(model, id), HttpStatus.OK);
+        return new ResponseEntity<>(service.updateBarCode(model, id), HttpStatus.CREATED);
     }
 
 }

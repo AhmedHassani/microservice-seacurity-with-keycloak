@@ -31,12 +31,12 @@ public class ItemController {
 
     @DeleteMapping("/del/{id}")
     public ResponseEntity deleteItem(@PathVariable(value = "id" ) int id){
-        return new ResponseEntity(service.deleteItem(id),HttpStatus.OK);
+        return new ResponseEntity(service.deleteItem(id),HttpStatus.NO_CONTENT);
     }
 
     @PostMapping("/update/{id}")
     public ResponseEntity updateItem(@RequestBody Items items,@PathVariable(value = "id" ) int id){
-        return new ResponseEntity(service.updateItem(id,items),HttpStatus.OK);
+        return new ResponseEntity(service.updateItem(id,items),HttpStatus.CREATED);
     }
 
 

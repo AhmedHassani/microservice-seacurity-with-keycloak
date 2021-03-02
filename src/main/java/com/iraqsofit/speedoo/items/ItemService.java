@@ -1,7 +1,10 @@
 package com.iraqsofit.speedoo.items;
+import com.iraqsofit.speedoo.exception.BadRequest;
 import com.iraqsofit.speedoo.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
+
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -16,7 +19,11 @@ public class ItemService {
     }
 
     public Items getItem(int id){
-        return repository.findById(id);
+        try {
+            return repository.findById(id).get();
+        }catch (NoSuchElementException exception){
+            throw new NotFoundException(String.format("Not Found this id [%s]", id));
+        }
     }
 
     public Items getItemByBarCode(String  barcode){
@@ -28,15 +35,26 @@ public class ItemService {
     }
 
     public  boolean  deleteItem(int id){
-        if (repository.existsById(id)){
-            repository.deleteById(id);
-            return true;
+        try {
+            if (repository.existsById(id)) {
+                repository.deleteById(id);
+                return true;
+            }
+        }catch (NoSuchElementException exception) {
+            throw new NotFoundException(String.format("Not Found this id [%s]", id));
+        }catch (HttpClientErrorException.BadRequest exception){
+            throw new BadRequest("illegal request");
         }
-        return false;
+        throw new NotFoundException(String.format("Not Found this id [%s]", id));
     }
 
     public Items updateItem(int id,Items items){
-        Items uItem=repository.findById(id);
+        Items uItem = null;
+        try {
+            uItem=repository.findById(id).get();
+        }catch (NoSuchElementException exception){
+            throw new NotFoundException(String.format("Not Found this id [%s]", id));
+        }
         items.setItemCode(uItem.getItemCode());
         return repository.save(items);
     }

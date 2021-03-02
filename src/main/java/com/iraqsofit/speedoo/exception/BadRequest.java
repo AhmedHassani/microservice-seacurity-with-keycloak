@@ -1,17 +1,15 @@
 package com.iraqsofit.speedoo.exception;
 
-
 import org.springframework.http.HttpStatus;
 
-public class NotFoundException extends ApiBaseException{
+public class BadRequest extends ApiBaseException{
 
-
-    public NotFoundException(String message) {
+    public BadRequest(String message) {
         super(message);
     }
 
     @Override
     public HttpStatus getStatusCode() {
-        return  HttpStatus.NOT_FOUND;
+        return HttpStatus.BAD_REQUEST;
     }
 }
