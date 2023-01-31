@@ -10,9 +10,9 @@
 	</parent>
 	<groupId>com.iraqsofit.speedoo</groupId>
 	<artifactId>speedoo</artifactId>
-	<version>0.1</version>
-	<name>speedoo</name>
-	<description>speedoo API</description>
+	<version>1</version>
+	<name>api</name>
+	<description>api</description>
 	<properties>
 		<java.version>8</java.version>
 	</properties>
