@@ -11,15 +11,23 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 
 @EnableWebSecurity
-public class SecurityConfig  extends WebSecurityConfigurerAdapter {
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private final String [] PUBLIC_ENDPOINT={
-        "/auth",
-        "/auth/"
+    private final String[] PUBLIC_ENDPOINT = {
+            "/api/gemstone/v1/signIn",
+            "/api/gemstone/v1/signIn/",
+            "/api/gemstone/v1/signUp",
+            "/api/gemstone/v1/signUp/",
+            "/api/gemstone/v1/otp/",
+            "/api/gemstone/v1/otp",
+            "/api/gemstone/v1/about",
+            "/api/gemstone/v1/privacy",
+            "/api/gemstone/v1/category",
+            "/api/gemstone/v1/banners",
     };
 
     @Bean
-    public Filter getFilter(){
+    public Filter getFilter() {
         return new Filter();
     }
 
@@ -28,12 +36,12 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter {
         http
                 .cors().and().csrf().disable()
                 .sessionManagement()
-                    .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                    .and()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
                 .authorizeRequests()
-                      .antMatchers(PUBLIC_ENDPOINT).permitAll()
-                      .anyRequest().authenticated()
-                      .and()
+                .antMatchers(PUBLIC_ENDPOINT).permitAll()
+                .anyRequest().authenticated()
+                .and()
                 .addFilterBefore(getFilter(), UsernamePasswordAuthenticationFilter.class);
     }
 

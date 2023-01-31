@@ -3,15 +3,15 @@ package com.iraqsofit.speedoo.exception;
 
 import org.springframework.http.HttpStatus;
 
-public class NotFoundException extends ApiBaseException {
+public class Unauthorized extends ApiBaseException {
 
 
-    public NotFoundException(String message) {
+    public Unauthorized(String message) {
         super(message);
     }
 
     @Override
     public HttpStatus getStatusCode() {
-        return HttpStatus.NOT_FOUND;
+        return HttpStatus.UNAUTHORIZED;
     }
 }

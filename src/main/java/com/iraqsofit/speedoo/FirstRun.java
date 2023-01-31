@@ -1,6 +1,6 @@
 package com.iraqsofit.speedoo;
 
-import com.iraqsofit.speedoo.user.UserDateilsService;
+import com.iraqsofit.speedoo.service.UserDateilsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
