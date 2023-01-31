@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.iraqsofit.speedoo</groupId>
-	<artifactId>speedoo</artifactId>
+	<artifactId>api</artifactId>
 	<version>1</version>
 	<name>api</name>
 	<description>api</description>
