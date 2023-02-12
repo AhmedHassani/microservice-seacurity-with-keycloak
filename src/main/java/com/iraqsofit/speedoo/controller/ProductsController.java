@@ -30,18 +30,7 @@ public class ProductsController {
         return new ResponseEntity(productsService.getProduct(id), HttpStatus.OK);
     }
 
-    @GetMapping("/products/findByName/{name}")
-    public ResponseEntity findByName(@PathVariable String name) {
-        return new ResponseEntity(
-                new Response<ProductsModel>(
-                        true,
-                        productsService.findByName(name),
-                        "Product found",
-                        HttpStatus.OK.value()
-                )
-                , HttpStatus.OK
-        );
-    }
+
 
     /// change
     @PostMapping(

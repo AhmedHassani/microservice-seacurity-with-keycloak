@@ -49,7 +49,6 @@ public class ProductsService {
     public ProductsModel addProduct(ProductsModel almaktab) {
         return productRepository.save(almaktab);
     }
-
     public ProductsModel updateProduct(ProductsModel almaktab) {
         try {
             if (productRepository.existsById(almaktab.getId())) {
@@ -78,8 +77,6 @@ public class ProductsService {
         throw new NotFoundException(String.format("Not Found this id [%s]", id));
     }
 
-    public List<ProductsModel> findByName(String name) {
-        List<ProductsModel> credentials = productRepository.findByName(name);
-        return credentials;
-    }
+
+
 }
