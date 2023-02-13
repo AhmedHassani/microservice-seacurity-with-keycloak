@@ -36,9 +36,30 @@ public class ProductsService {
         throw new NotFoundException(String.format("Not Found this id [%s]", id));
     }
 
+    public List<ProductsModel> getProductDiscount(double dis) {
+        try {
+            return productRepository.findProductByDiscount(dis);
+        } catch (NoSuchElementException exception) {
+            throw new NotFoundException(String.format("Not Found this id"));
+        } catch (HttpClientErrorException.BadRequest exception) {
+            throw new BadRequest("illegal request");
+        }
+    }
+
     public List<ProductsModel> getListProducts(Integer pageNo, Integer pageSize, String sortBy) {
         Pageable paging = PageRequest.of(pageNo, pageSize, Sort.by(sortBy));
         Page<ProductsModel> pagedResult = productRepository.findAll(paging);
+        if (pagedResult.hasContent()) {
+            return pagedResult.getContent();
+        } else {
+            return new ArrayList<>();
+        }
+    }
+
+
+    public List<ProductsModel> getListProductsCategory(String category,Integer pageNo, Integer pageSize, String sortBy) {
+        Pageable paging = PageRequest.of(pageNo, pageSize, Sort.by(sortBy));
+        Page<ProductsModel> pagedResult = productRepository.findByCategory(category,paging);
         if (pagedResult.hasContent()) {
             return pagedResult.getContent();
         } else {
@@ -76,6 +97,7 @@ public class ProductsService {
         }
         throw new NotFoundException(String.format("Not Found this id [%s]", id));
     }
+
 
 
 

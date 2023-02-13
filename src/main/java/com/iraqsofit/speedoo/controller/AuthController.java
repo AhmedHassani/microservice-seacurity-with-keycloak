@@ -13,10 +13,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
@@ -79,6 +76,22 @@ public class AuthController {
         );
     }
 
+    @PostMapping(value = {"/forgetPassword", "/forgetPassword/"})
+    public ResponseEntity<Response> forgetPassword(@Valid  @RequestBody ForgetPassword forgetPassword){
+        return  new ResponseEntity<>(
+                service.forgetPassword(
+                        forgetPassword.getPassword(),
+                        forgetPassword.getUsername(),
+                        forgetPassword.getOtp()
+                ),
+                HttpStatus.OK
+        );
+    }
+
+    @GetMapping("/setOTPForgetPassword/{username}")
+    public ResponseEntity setOTPForgetPassword(@PathVariable String username) {
+        return new ResponseEntity(new Response<>(true,new ArrayList<>(),"otp sent successfully", 200), HttpStatus.OK);
+    }
 
 
 

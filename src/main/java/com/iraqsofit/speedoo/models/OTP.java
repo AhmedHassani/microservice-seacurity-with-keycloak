@@ -4,6 +4,11 @@ public class OTP {
     private  int otp = 123456;
     private  String  username;
 
+    public OTP(int otp, String username) {
+        this.otp = otp;
+        this.username = username;
+    }
+
     public OTP() {
     }
 

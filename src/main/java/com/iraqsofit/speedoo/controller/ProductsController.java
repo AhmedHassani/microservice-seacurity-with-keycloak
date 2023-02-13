@@ -1,4 +1,5 @@
 package com.iraqsofit.speedoo.controller;
+import com.iraqsofit.speedoo.models.Media;
 import com.iraqsofit.speedoo.models.ProductsModel;
 import com.iraqsofit.speedoo.models.Response;
 import com.iraqsofit.speedoo.service.ProductsService;
@@ -8,6 +9,8 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
+import java.util.HashSet;
+import java.util.Set;
 
 
 @RestController
@@ -24,12 +27,26 @@ public class ProductsController {
         return new ResponseEntity(productsService.getListProducts(pageNo, pageSize, sortBy), HttpStatus.OK);
     }
 
+    @GetMapping(value = {"/getListProductsCategory", "/getListProductsCategory/"})
+    public ResponseEntity getListProductsCategory(
+            @RequestParam(defaultValue = "") String cate,
+            @RequestParam(defaultValue = "0") Integer pageNo,
+            @RequestParam(defaultValue = "10") Integer pageSize,
+            @RequestParam(defaultValue = "id") String sortBy) {
+        return new ResponseEntity(productsService.getListProductsCategory(cate,pageNo, pageSize, sortBy), HttpStatus.OK);
+    }
+
     @GetMapping("/product/findByID/{id}")
     public ResponseEntity getProduct(@PathVariable long id) {
 
         return new ResponseEntity(productsService.getProduct(id), HttpStatus.OK);
     }
 
+
+    @GetMapping("/product/findByDiscount/{discount}")
+    public ResponseEntity getProductDiscount(@PathVariable double discount) {
+        return new ResponseEntity(productsService.getProductDiscount(discount), HttpStatus.OK);
+    }
 
 
     /// change
@@ -39,9 +56,9 @@ public class ProductsController {
     )
     public ResponseEntity addProduct(@Valid ProductsModel productsModel) {
         productsModel.setCreatedAt();
-        /*  Set<Media> mediaSet = new HashSet<Media>();
+       /* Set<Media> mediaSet = new HashSet<Media>();
         mediaSet.add(new Media());
-        productsModel.setMedia();*/
+        productsModel.setMedia(mediaSet);*/
         return new ResponseEntity(productsService.addProduct(productsModel), HttpStatus.CREATED);
     }
 
@@ -54,5 +71,8 @@ public class ProductsController {
     public ResponseEntity deleteProduct(@PathVariable long id) {
         return new ResponseEntity(productsService.deleteProduct(id), HttpStatus.OK);
     }
+
+
+
 
 }

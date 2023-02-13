@@ -1,5 +1,6 @@
 package com.iraqsofit.speedoo.service;
 
+import com.iraqsofit.speedoo.models.OTP;
 import com.iraqsofit.speedoo.models.Response;
 import com.iraqsofit.speedoo.models.TokenResponse;
 import com.iraqsofit.speedoo.security.Token;
@@ -93,7 +94,6 @@ public class UserDateilsService implements UserDetailsService {
     }
 
     public Response changePassword(String oldPassword,String newPassword,String username){
-        //$2a$10$nCMkwxnvhdhxkO75fm28ie4QFk.CnFIS/uN0bvpmv4Lz5
         try {
             if(userRepository.existsByUsername(username)){
                 UserImp userImp = userRepository.findByUsername(username);
@@ -118,5 +118,48 @@ public class UserDateilsService implements UserDetailsService {
             throw new BadRequest(e.getConstraintViolations().stream().findFirst().get().getMessageTemplate());
         }
     }
+
+    public Response forgetPassword(String password,String username,String otp){
+        try {
+            if(userRepository.existsByUsername(username)){
+                UserImp userImp = userRepository.findByUsername(username);
+                if(otp.equals("123456")) {
+                    userImp.setPassword(password);
+                    String tokenSign = token.generateToken(userImp);
+                    List<TokenResponse> tokens = new ArrayList<>();
+                    tokens.add(new TokenResponse(tokenSign));
+                    userRepository.save(userImp);
+                    return new Response(true,tokens, "success change password account", 200);
+                }else{
+                    throw new BadRequest("failed otp code not correct !!");
+                }
+            }else{
+                throw new BadRequest("Failed change password account");
+            }
+        } catch (NoSuchElementException exception) {
+            throw new NotFoundException(String.format("Not Found"));
+        } catch (HttpClientErrorException.BadRequest exception) {
+            throw new BadRequest("illegal request");
+        }catch (ConstraintViolationException e) {
+            throw new BadRequest(e.getConstraintViolations().stream().findFirst().get().getMessageTemplate());
+        }
+    }
+
+    public Response sendOTPForgetPassword(String username){
+        if(userRepository.existsByUsername(username)) {
+            UserImp userImp = userRepository.findByUsername(username);
+            ArrayList  list  =new ArrayList();
+            list.add(new OTP(123456,username));
+            return new Response(true,list, "success change password account", 200);
+        }else {
+            return new Response(true,new ArrayList(), "success change password account", 400);
+        }
+
+    }
+
+
+
+
+
 
 }

@@ -6,6 +6,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "product")
@@ -37,10 +38,9 @@ public class ProductsModel {
     @Column(nullable = false)
     private Double discount;
 
-
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "product_id")
-    private List<Media> media;
+    private Set<Media> media;
 
 
 
@@ -120,11 +120,11 @@ public class ProductsModel {
         this.createdAt = createdAt;
     }
 
-    public List<Media> getMedia() {
+    public Set<Media> getMedia() {
         return media;
     }
 
-    public void setMedia(List<Media> media) {
+    public void setMedia(Set<Media> media) {
         this.media = media;
     }
 }

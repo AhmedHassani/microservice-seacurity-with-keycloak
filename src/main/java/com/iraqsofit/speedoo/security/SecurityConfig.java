@@ -18,12 +18,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             "/api/gemstone/v1/signIn/",
             "/api/gemstone/v1/signUp",
             "/api/gemstone/v1/signUp/",
+            "/api/gemstone/v1//setOTPForgetPassword/*",
+            "/api/gemstone/v1//setOTPForgetPassword",
+            "/api/gemstone/v1/forgetPassword",
+            "/api/gemstone/v1/forgetPassword/",
             "/api/gemstone/v1/otp/",
             "/api/gemstone/v1/otp",
             "/api/gemstone/v1/about",
             "/api/gemstone/v1/privacy",
             "/api/gemstone/v1/category",
+            "/api/gemstone/v1/category",
             "/api/gemstone/v1/banners",
+            "/api/gemstone/v1/banners/",
     };
 
     @Bean
