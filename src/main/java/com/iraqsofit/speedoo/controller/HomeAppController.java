@@ -1,17 +1,25 @@
 package com.iraqsofit.speedoo.controller;
-import com.iraqsofit.speedoo.models.Category;
-import com.iraqsofit.speedoo.models.PrivacyOrAboutModel;
-import com.iraqsofit.speedoo.models.Response;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.iraqsofit.speedoo.models.*;
+import com.iraqsofit.speedoo.repository.NotificationRepository;
+import com.iraqsofit.speedoo.service.NotificationService;
+import com.iraqsofit.speedoo.service.UserDateilsService;
+import com.iraqsofit.speedoo.user.UserImp;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
 @RequestMapping("/api/gemstone/v1")
 @RestController
 public class HomeAppController {
+    @Autowired
+    NotificationService notificationService;
+    @Autowired
+    UserDateilsService userDateilsService;
     //privacy
     //About
     @GetMapping("/about")
@@ -54,9 +62,5 @@ public class HomeAppController {
                 200
         );
     }
-
-
-
-
 
 }

@@ -1,6 +1,8 @@
 package com.iraqsofit.speedoo.user;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.iraqsofit.speedoo.models.Media;
+import com.iraqsofit.speedoo.models.NotificationModel;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -10,6 +12,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.util.Collection;
+import java.util.List;
+import java.util.Set;
 
 
 @Entity
@@ -56,6 +60,11 @@ public class UserImp implements UserDetails {
     @NotEmpty(message = "address  must be Not Empty")
     @NotNull(message = "address  must be Not Empty")
     private String address;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "notification_id")
+    private List<NotificationModel> notification;
+
 
     public UserImp() {
     }
@@ -158,5 +167,13 @@ public class UserImp implements UserDetails {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<NotificationModel> getNotification() {
+        return notification;
+    }
+
+    public void setNotification(List<NotificationModel> notification) {
+        this.notification = notification;
     }
 }

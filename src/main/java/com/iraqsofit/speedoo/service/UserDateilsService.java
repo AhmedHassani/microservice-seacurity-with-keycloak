@@ -1,5 +1,6 @@
 package com.iraqsofit.speedoo.service;
 
+import com.iraqsofit.speedoo.models.NotificationModel;
 import com.iraqsofit.speedoo.models.OTP;
 import com.iraqsofit.speedoo.models.Response;
 import com.iraqsofit.speedoo.models.TokenResponse;
@@ -98,7 +99,7 @@ public class UserDateilsService implements UserDetailsService {
             if(userRepository.existsByUsername(username)){
                 UserImp userImp = userRepository.findByUsername(username);
                 if(BCrypt.checkpw(oldPassword,userImp.getPassword())) {
-                    userImp.setPassword(newPassword);
+                    userImp.setPassword(getPasswordEncoder().encode(newPassword));
                     String tokenSign = token.generateToken(userImp);
                     List<TokenResponse> tokens = new ArrayList<>();
                     tokens.add(new TokenResponse(tokenSign));
@@ -156,6 +157,31 @@ public class UserDateilsService implements UserDetailsService {
         }
 
     }
+
+
+    public Response getNotificationById(String username){
+        if(userRepository.existsByUsername(username)){
+            UserImp userImp = userRepository.findByUsername(username);
+            return new Response(true,userImp.getNotification(), "success", 200);
+        }else{
+            return new Response(true,new ArrayList(), "empty notification", 400);
+        }
+    }
+
+    public Response pushNotificationById(String username, NotificationModel notificationModel){
+        if(userRepository.existsByUsername(username)){
+            UserImp userImp = userRepository.findByUsername(username);
+            List<NotificationModel> notificationModelList = new ArrayList<>();
+            notificationModelList.add(notificationModel);
+            userImp.setNotification(notificationModelList);
+            return new Response(true,notificationModelList, "success", 200);
+        }else{
+            return new Response(true,new ArrayList(), "empty notification", 400);
+        }
+    }
+
+
+
 
 
 
