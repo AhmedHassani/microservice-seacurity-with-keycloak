@@ -125,7 +125,7 @@ public class UserDateilsService implements UserDetailsService {
             if(userRepository.existsByUsername(username)){
                 UserImp userImp = userRepository.findByUsername(username);
                 if(otp.equals("123456")) {
-                    userImp.setPassword(password);
+                    userImp.setPassword(getPasswordEncoder().encode(password));
                     String tokenSign = token.generateToken(userImp);
                     List<TokenResponse> tokens = new ArrayList<>();
                     tokens.add(new TokenResponse(tokenSign));
