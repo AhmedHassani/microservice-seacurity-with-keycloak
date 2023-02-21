@@ -43,9 +43,12 @@ public class ProductsController {
     }
 
 
-    @GetMapping("/product/findByDiscount/{discount}")
-    public ResponseEntity getProductDiscount(@PathVariable double discount) {
-        return new ResponseEntity(productsService.getProductDiscount(discount), HttpStatus.OK);
+    @GetMapping(value = {"/product/findByDiscount","/product/findByDiscount/"})
+    public ResponseEntity getProductDiscount(
+                                              @RequestParam(defaultValue = "0") Integer pageNo,
+                                              @RequestParam(defaultValue = "10") Integer pageSize,
+                                              @RequestParam(defaultValue = "id") String sortBy) {
+        return new ResponseEntity(productsService.getProductDiscount(0.1,pageNo,pageSize,sortBy), HttpStatus.OK);
     }
 
 
@@ -71,6 +74,18 @@ public class ProductsController {
     public ResponseEntity deleteProduct(@PathVariable long id) {
         return new ResponseEntity(productsService.deleteProduct(id), HttpStatus.OK);
     }
+
+
+    @GetMapping("/product/search/{q}")
+    public ResponseEntity deleteProduct(@PathVariable String q,
+                                        @RequestParam(defaultValue = "0") Integer pageNo,
+                                        @RequestParam(defaultValue = "10") Integer pageSize,
+                                        @RequestParam(defaultValue = "id") String sortBy) {
+        return new ResponseEntity(productsService.search(q,pageNo,pageSize,sortBy), HttpStatus.OK);
+    }
+
+
+
 
 
 

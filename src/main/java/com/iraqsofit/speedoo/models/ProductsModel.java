@@ -38,6 +38,9 @@ public class ProductsModel {
     @Column(nullable = false)
     private Double discount;
 
+    @Column(nullable = false)
+    private float rate;
+
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "product_id")
     private Set<Media> media;
@@ -126,5 +129,13 @@ public class ProductsModel {
 
     public void setMedia(Set<Media> media) {
         this.media = media;
+    }
+
+    public float getRate() {
+        return rate;
+    }
+
+    public void setRate(float rate) {
+        this.rate = rate;
     }
 }

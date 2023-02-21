@@ -35,12 +35,12 @@ public class HomeAppController {
     @GetMapping("/category")
     public Response GetCategory(){
         List<Category> categoryList = new ArrayList<>();
-        categoryList.add(new Category(1,"Category1","https://firebasestorage.googleapis.com/v0/b/dsas-5e504.appspot.com/o/Screenshot%202023-01-31%20160253.png?alt=media&token=9f380bd4-a574-497b-81bb-ea4c22bf7b81"));
-        categoryList.add(new Category(2,"Category2","https://firebasestorage.googleapis.com/v0/b/dsas-5e504.appspot.com/o/Screenshot%202023-01-31%20160333.png?alt=media&token=169999f6-b0f5-4f7a-8494-0fe1f605cadd"));
-        categoryList.add(new Category(3,"Category3","https://firebasestorage.googleapis.com/v0/b/dsas-5e504.appspot.com/o/Screenshot%202023-01-31%20160253.png?alt=media&token=9f380bd4-a574-497b-81bb-ea4c22bf7b81"));
-        categoryList.add(new Category(4,"Category4","https://firebasestorage.googleapis.com/v0/b/dsas-5e504.appspot.com/o/Screenshot%202023-01-31%20160333.png?alt=media&token=169999f6-b0f5-4f7a-8494-0fe1f605cadd"));
-        categoryList.add(new Category(5,"Category5","https://firebasestorage.googleapis.com/v0/b/dsas-5e504.appspot.com/o/Screenshot%202023-01-31%20160253.png?alt=media&token=9f380bd4-a574-497b-81bb-ea4c22bf7b81"));
-        categoryList.add(new Category(6,"Category6","https://firebasestorage.googleapis.com/v0/b/dsas-5e504.appspot.com/o/Screenshot%202023-01-31%20160333.png?alt=media&token=169999f6-b0f5-4f7a-8494-0fe1f605cadd"));
+        categoryList.add(new Category(2,"Category1","https://firebasestorage.googleapis.com/v0/b/dsas-5e504.appspot.com/o/Screenshot%202023-01-31%20160253.png?alt=media&token=9f380bd4-a574-497b-81bb-ea4c22bf7b81"));
+        categoryList.add(new Category(3,"Category2","https://firebasestorage.googleapis.com/v0/b/dsas-5e504.appspot.com/o/Screenshot%202023-01-31%20160333.png?alt=media&token=169999f6-b0f5-4f7a-8494-0fe1f605cadd"));
+        categoryList.add(new Category(4,"Category3","https://firebasestorage.googleapis.com/v0/b/dsas-5e504.appspot.com/o/Screenshot%202023-01-31%20160253.png?alt=media&token=9f380bd4-a574-497b-81bb-ea4c22bf7b81"));
+        categoryList.add(new Category(5,"Category4","https://firebasestorage.googleapis.com/v0/b/dsas-5e504.appspot.com/o/Screenshot%202023-01-31%20160333.png?alt=media&token=169999f6-b0f5-4f7a-8494-0fe1f605cadd"));
+        categoryList.add(new Category(6,"Category5","https://firebasestorage.googleapis.com/v0/b/dsas-5e504.appspot.com/o/Screenshot%202023-01-31%20160253.png?alt=media&token=9f380bd4-a574-497b-81bb-ea4c22bf7b81"));
+        categoryList.add(new Category(7,"Category6","https://firebasestorage.googleapis.com/v0/b/dsas-5e504.appspot.com/o/Screenshot%202023-01-31%20160333.png?alt=media&token=169999f6-b0f5-4f7a-8494-0fe1f605cadd"));
         return new Response<>(
                 true,
                 categoryList,

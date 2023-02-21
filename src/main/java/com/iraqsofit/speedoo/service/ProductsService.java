@@ -36,11 +36,23 @@ public class ProductsService {
         throw new NotFoundException(String.format("Not Found this id [%s]", id));
     }
 
-    public List<ProductsModel> getProductDiscount(double dis) {
+    public List<ProductsModel> getProductDiscount(double dis,Integer pageNo, Integer pageSize, String sortBy) {
         try {
-            return productRepository.findProductByDiscount(dis);
+            Pageable paging = PageRequest.of(pageNo, pageSize, Sort.by(sortBy));
+            return productRepository.findByDiscountGreaterThan(dis,paging);
         } catch (NoSuchElementException exception) {
-            throw new NotFoundException(String.format("Not Found this id"));
+            throw new NotFoundException(String.format("Not Found"));
+        } catch (HttpClientErrorException.BadRequest exception) {
+            throw new BadRequest("illegal request");
+        }
+    }
+
+    public List<ProductsModel> search(String q,Integer pageNo, Integer pageSize, String sortBy) {
+        try {
+            Pageable paging = PageRequest.of(pageNo, pageSize, Sort.by(sortBy));
+            return productRepository.findByNameContaining(q,paging);
+        } catch (NoSuchElementException exception) {
+            throw new NotFoundException(String.format("Not Found"));
         } catch (HttpClientErrorException.BadRequest exception) {
             throw new BadRequest("illegal request");
         }
