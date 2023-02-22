@@ -1,9 +1,6 @@
 package com.iraqsofit.speedoo.service;
 
-import com.iraqsofit.speedoo.models.NotificationModel;
-import com.iraqsofit.speedoo.models.OTP;
-import com.iraqsofit.speedoo.models.Response;
-import com.iraqsofit.speedoo.models.TokenResponse;
+import com.iraqsofit.speedoo.models.*;
 import com.iraqsofit.speedoo.security.Token;
 import com.iraqsofit.speedoo.user.UserImp;
 import com.iraqsofit.speedoo.user.UserRepository;
@@ -180,6 +177,28 @@ public class UserDateilsService implements UserDetailsService {
             return new Response(true,new ArrayList(), "empty notification", 400);
         }
     }
+
+    public Response updateUser(String username, UserUpdateModel user){
+        if(userRepository.existsByUsername(user.getUsername())){
+            return new Response(true,new ArrayList(), "number phone alerdy used", 400);
+        }else{
+            UserImp userDetails1 = userRepository.findByUsername(user.getUsername());
+            userDetails1.setName(user.getName());
+            userDetails1.setUsername(user.getUsername());
+            userDetails1.setAddress(user.getAddress());
+            List<UserImp> userImpList = new ArrayList<>();
+            userImpList.add(userDetails1);
+           return  new Response(true,userImpList, "success", 200);
+        }
+    }
+
+
+
+
+
+
+
+
 
 
 

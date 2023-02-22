@@ -60,6 +60,9 @@ public class AuthController {
         return new Response(true,otpList, "successful create account",200);
     }
 
+
+
+
     @PostMapping(value = {"/otp", "/otp/"})
     public ResponseEntity<Response> otp(@Valid  @RequestBody OTPRequest otpRequest){
         return  new ResponseEntity<>(service.setOtp(otpRequest.getOtp(),otpRequest.getUsername()), HttpStatus.OK);
@@ -92,6 +95,21 @@ public class AuthController {
     public ResponseEntity setOTPForgetPassword(@PathVariable String username) {
         return new ResponseEntity(new Response<>(true,new ArrayList<>(),"otp sent successfully", 200), HttpStatus.OK);
     }
+
+
+    @GetMapping("/getUserDetails/{username}")
+    public UserDetails getUserDetails(@PathVariable String username) {
+        return  service.loadUserByUsername(username);
+    }
+
+
+    @PostMapping(value = {"/update/{username}"})
+    public Response update(@Valid  @RequestBody UserUpdateModel user,@PathVariable String username) {
+        return service.updateUser(username,user);
+    }
+
+
+
 
 
 
