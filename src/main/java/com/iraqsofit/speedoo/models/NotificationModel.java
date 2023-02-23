@@ -17,9 +17,6 @@ public class NotificationModel {
     private String subtitle;
 
     @Column(nullable = false)
-    private String date;
-
-    @Column(nullable = false)
     private int state;
 
     @Column(nullable = false)
@@ -29,10 +26,9 @@ public class NotificationModel {
     public NotificationModel() {
     }
 
-    public NotificationModel(String title, String subtitle, String date, int state,String playerID) {
+    public NotificationModel(String title, String subtitle, int state,String playerID) {
         this.title = title;
         this.subtitle = subtitle;
-        this.date = date;
         this.state = state;
         this.playerID= playerID;
     }
@@ -61,13 +57,6 @@ public class NotificationModel {
         this.subtitle = subtitle;
     }
 
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
-    }
 
     public int getState() {
         return state;

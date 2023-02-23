@@ -66,13 +66,25 @@ public class HomeAppController {
 
     @GetMapping("/notification/{username}")
     public Response getNotification(@PathVariable String username){
-        List<NotificationModel> notificationModelList = new ArrayList<>();
-        notificationModelList.add(new NotificationModel("وصول الطلب","الطلب قيد التوصيل رقم الطلب 34","2023-02-22 23:28:07",0,"c07aa8c0-a6cd-438c-a1c4-7d09239e73f7"));
-        notificationModelList.add(new NotificationModel("تأكيد الطلب","الطلب رقم 12345 قد تم تأكيده. لمشاهدة التفاصيل اضغط هنا","2023-02-22 23:28:07",1,"52d0c0ea-a0cd-4c97-996f-a406434b5595"));
-        notificationModelList.add(new NotificationModel("إلغاء الطلب","الطلب رقم 12345 قد تم إلغاؤه. لمشاهدة التفاصيل اضغط هنا","2023-02-22 23:28:07",2,"8a05702c-a5d2-4cc8-9d89-69e3119d830f"));
+
+        List<NotificationModel> notificationModelList1 = new ArrayList<>();
+        notificationModelList1.add(new NotificationModel("وصول الطلب","الطلب قيد التوصيل رقم الطلب 34",0,"c07aa8c0-a6cd-438c-a1c4-7d09239e73f7"));
+        notificationModelList1.add(new NotificationModel("تأكيد الطلب","الطلب رقم 12345 قد تم تأكيده. لمشاهدة التفاصيل اضغط هنا",1,"52d0c0ea-a0cd-4c97-996f-a406434b5595"));
+        notificationModelList1.add(new NotificationModel("إلغاء الطلب","الطلب رقم 12345 قد تم إلغاؤه. لمشاهدة التفاصيل اضغط هنا",2,"8a05702c-a5d2-4cc8-9d89-69e3119d830f"));
+        NotificationDateModel notificationDateModel1 =new NotificationDateModel("2023-02-23 12:07:12",notificationModelList1);
+        NotificationDateModel notificationDateModel2 =new NotificationDateModel("2023-02-24 1:07:12",notificationModelList1);
+        NotificationDateModel notificationDateModel3 =new NotificationDateModel("2023-02-25 1:07:12",notificationModelList1);
+        NotificationDateModel notificationDateModel4 =new NotificationDateModel("2023-02-26 1:07:12",notificationModelList1);
+
+        List<NotificationDateModel> notifications = new ArrayList<>();
+        notifications.add(notificationDateModel1);
+        notifications.add(notificationDateModel2);
+        notifications.add(notificationDateModel3);
+        notifications.add(notificationDateModel4);
+
         return new Response<>(
                 true,
-                notificationModelList,
+                notifications,
                 "success",
                 200
         );
