@@ -1,6 +1,7 @@
 package com.iraqsofit.speedoo.controller;
 import com.iraqsofit.speedoo.models.*;
 import com.iraqsofit.speedoo.repository.NotificationRepository;
+import com.iraqsofit.speedoo.service.HomeAppService;
 import com.iraqsofit.speedoo.service.NotificationService;
 import com.iraqsofit.speedoo.service.UserDateilsService;
 import com.iraqsofit.speedoo.user.UserImp;
@@ -20,6 +21,8 @@ public class HomeAppController {
     NotificationService notificationService;
     @Autowired
     UserDateilsService userDateilsService;
+    @Autowired
+    HomeAppService homeAppService;
     //privacy
     //About
     @GetMapping("/about")
@@ -89,6 +92,42 @@ public class HomeAppController {
                 200
         );
     }
+
+    @GetMapping(value = {"/getPosts","/getPosts/"})
+    public ResponseEntity getPosts(
+                                        @RequestParam(defaultValue = "0") Integer pageNo,
+                                        @RequestParam(defaultValue = "10") Integer pageSize,
+                                        @RequestParam(defaultValue = "id") String sortBy) {
+        return new ResponseEntity(homeAppService.getPost(pageNo,pageSize,sortBy), HttpStatus.OK);
+    }
+
+    @GetMapping(value = {"/getEducational","/getEducational/"})
+    public ResponseEntity getEducational(
+            @RequestHeader("key") String key,
+            @RequestParam(defaultValue = "0") Integer pageNo,
+            @RequestParam(defaultValue = "10") Integer pageSize,
+            @RequestParam(defaultValue = "id") String sortBy) {
+        if(!key.equals("6f19456a-123e-4f4b-beaf-188fa54fe7bc")){
+            return new ResponseEntity(new Response(false,
+                    new ArrayList<>(),"Please contact us to activate the account",
+                    402), HttpStatus.PAYMENT_REQUIRED);
+        }
+        return new ResponseEntity(homeAppService.getEducational(pageNo,pageSize,sortBy), HttpStatus.OK);
+    }
+
+
+    @PostMapping("/add/posts")
+    public ResponseEntity addPosts(@RequestBody Posts posts) {
+        return new ResponseEntity(homeAppService.addPost(posts), HttpStatus.CREATED);
+    }
+
+    @PostMapping("/add/educational")
+    public ResponseEntity addEducational(@RequestBody Educational educational) {
+        return new ResponseEntity(homeAppService.addEducational(educational), HttpStatus.CREATED);
+    }
+
+
+
 
 
 
