@@ -78,7 +78,6 @@ public class HomeAppController {
         NotificationDateModel notificationDateModel2 =new NotificationDateModel("2023-02-24 1:07:12",notificationModelList1);
         NotificationDateModel notificationDateModel3 =new NotificationDateModel("2023-02-25 1:07:12",notificationModelList1);
         NotificationDateModel notificationDateModel4 =new NotificationDateModel("2023-02-26 1:07:12",notificationModelList1);
-
         List<NotificationDateModel> notifications = new ArrayList<>();
         notifications.add(notificationDateModel1);
         notifications.add(notificationDateModel2);
@@ -91,6 +90,11 @@ public class HomeAppController {
                 "success",
                 200
         );
+    }
+
+    @GetMapping("/notification/push/")
+    public ResponseEntity pushNotification(){
+        return notificationService.sentNotification("093c1896-71df-406c-9768-99c1a5a5b2b4",false);
     }
 
     @GetMapping(value = {"/getPosts","/getPosts/"})

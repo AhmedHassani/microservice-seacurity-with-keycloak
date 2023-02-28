@@ -45,7 +45,18 @@ public class ProductsModel {
     @JoinColumn(name = "product_id")
     private Set<Media> media;
 
-
+    public ProductsModel(long id, String name, String description, Date createdAt, String category, Double price, Integer quantity, Double discount, float rate, Set<Media> media) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.createdAt = createdAt;
+        this.category = category;
+        this.price = price;
+        this.quantity = quantity;
+        this.discount = discount;
+        this.rate = rate;
+        this.media = media;
+    }
 
     public ProductsModel() {
         createdAt = new Timestamp(System.currentTimeMillis());
