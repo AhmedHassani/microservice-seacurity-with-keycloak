@@ -10,7 +10,7 @@ import com.twilio.rest.api.v2010.account.Message;
 public class TwilioOTP {
 
     public  final String ACCOUNT_SID = "AC80558c35951bdce79b5b497eec148c6f";
-    public  final String AUTH_TOKEN = "d3f39783c12baa82df39d081c61825e9";
+    public  final String AUTH_TOKEN = "2fc27ab16b25395d9974d85c7bb065ac";
 
 
     public String sms(String username){
@@ -19,7 +19,7 @@ public class TwilioOTP {
         Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
         Message message = Message.creator(
                 new com.twilio.type.PhoneNumber("+9647831403506"),
-                new com.twilio.type.PhoneNumber("+15673131803"),
+                new com.twilio.type.PhoneNumber("+15673131803"),  //+15673131803
                 "Your OTP code is  : "+otp)
                 .create();
         return otpDb;
