@@ -46,6 +46,10 @@ public class UserImp implements UserDetails {
     @Column(name = "is_active")
     private boolean is_active;
 
+    @JsonIgnore
+    @Column(name = "otp")
+    private String otp;
+
     @Column(name = "location")
     @NotEmpty(message = "location must be Not Empty")
     @NotNull(message = "location must be Not Empty")
@@ -60,6 +64,7 @@ public class UserImp implements UserDetails {
     @NotEmpty(message = "address  must be Not Empty")
     @NotNull(message = "address  must be Not Empty")
     private String address;
+
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "notification_id")
@@ -175,5 +180,13 @@ public class UserImp implements UserDetails {
 
     public void setNotification(List<NotificationModel> notification) {
         this.notification = notification;
+    }
+
+    public String getOtp() {
+        return otp;
+    }
+
+    public void setOtp(String otp) {
+        this.otp = otp;
     }
 }

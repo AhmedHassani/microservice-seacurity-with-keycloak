@@ -30,6 +30,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             "/api/gemstone/v1/category",
             "/api/gemstone/v1/banners",
             "/api/gemstone/v1/banners/",
+            "/twilio",
+            "/api/gemstone/v1/delete/*"
     };
 
     @Bean

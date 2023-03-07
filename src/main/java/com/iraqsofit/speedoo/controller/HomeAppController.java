@@ -1,6 +1,7 @@
 package com.iraqsofit.speedoo.controller;
 import com.iraqsofit.speedoo.models.*;
 import com.iraqsofit.speedoo.repository.NotificationRepository;
+import com.iraqsofit.speedoo.service.AddressServer;
 import com.iraqsofit.speedoo.service.HomeAppService;
 import com.iraqsofit.speedoo.service.NotificationService;
 import com.iraqsofit.speedoo.service.UserDateilsService;
@@ -18,11 +19,14 @@ import java.util.List;
 @RestController
 public class HomeAppController {
     @Autowired
-    NotificationService notificationService;
+    private NotificationService notificationService;
     @Autowired
-    UserDateilsService userDateilsService;
+    private UserDateilsService userDateilsService;
     @Autowired
-    HomeAppService homeAppService;
+    private HomeAppService homeAppService;
+
+    @Autowired
+    private AddressServer addressServer;
     //privacy
     //About
     @GetMapping("/about")
@@ -131,9 +135,15 @@ public class HomeAppController {
     }
 
 
+    @GetMapping("/address/{username}")
+    public  List<AddressInfo> getAddress(@PathVariable String username){
+        return addressServer.getAddressByUserID(username);
+    }
 
-
-
+    @PostMapping("/add/address")
+    public ResponseEntity addAddress(@RequestBody AddressInfo address) {
+        return new ResponseEntity(addressServer.save(address), HttpStatus.CREATED);
+    }
 
 
 }

@@ -3,6 +3,7 @@ package com.iraqsofit.speedoo.controller;
 import com.iraqsofit.speedoo.models.*;
 import com.iraqsofit.speedoo.security.SignInRequest;
 import com.iraqsofit.speedoo.security.Token;
+import com.iraqsofit.speedoo.service.TwilioOTP;
 import com.iraqsofit.speedoo.service.UserDateilsService;
 import com.iraqsofit.speedoo.user.UserImp;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,8 @@ public class AuthController {
     private UserDateilsService service;
     @Autowired
     private AuthenticationManager authenticationManager;
+    @Autowired
+    private TwilioOTP twilioOTP;
 
     @PostMapping(value = {"/signIn", "/signIn/"})
     public Response<TokenResponse> signIn(@RequestBody SignInRequest signInRequest) {
@@ -44,17 +47,22 @@ public class AuthController {
 
     @PostMapping(value = {"/signUp", "/signUp/"})
     public Response createAccount(@Valid  @RequestBody SingUpRequest singUpRequest) {
+        System.out.println(singUpRequest.getPhoneNumber());
         List<OTP> otpList = new ArrayList();
-
-        UserImp userImp = service.Save(new UserImp(
+        String date_otp = twilioOTP.sms(singUpRequest.getPhoneNumber());
+        String otpDb []=date_otp.split(",");
+        UserImp user = new UserImp(
                 singUpRequest.getName(),
                 singUpRequest.getPhoneNumber(),
                 service.getPasswordEncoder().encode(singUpRequest.getPassword()),
                 singUpRequest.getLocation(),
                 singUpRequest.getCity(),
                 singUpRequest.getAddress()
-        ));
+        );
+        user.setOtp(date_otp);
+        UserImp userImp = service.Save(user);
         OTP otp = new OTP();
+        otp.setCode(Integer.parseInt(otpDb[0]));
         otp.setUserID(userImp.getUsername());
         otpList.add(otp);
         return new Response(true,otpList, "successful create account",200);
@@ -93,7 +101,7 @@ public class AuthController {
 
     @GetMapping("/setOTPForgetPassword/{username}")
     public ResponseEntity setOTPForgetPassword(@PathVariable String username) {
-        return new ResponseEntity(new Response<>(true,new ArrayList<>(),"otp sent successfully", 200), HttpStatus.OK);
+        return new ResponseEntity(service.sendOTPForgetPassword(username), HttpStatus.OK);
     }
 
 
@@ -108,9 +116,10 @@ public class AuthController {
         return service.updateUser(username,user);
     }
 
-
-
-
+    @GetMapping(value = {"/delete/{username}"})
+    public boolean delete(@PathVariable String username) {
+        return service.deleteByUsername(username);
+    }
 
 
 }

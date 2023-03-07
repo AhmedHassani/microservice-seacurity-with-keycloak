@@ -1,7 +1,7 @@
 package com.iraqsofit.speedoo.models;
 
 public class OTP {
-    private  int otp = 123456;
+    private  int otp;
     private  String  username;
 
     public OTP(int otp, String username) {
