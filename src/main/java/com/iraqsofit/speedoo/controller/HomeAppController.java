@@ -1,17 +1,13 @@
 package com.iraqsofit.speedoo.controller;
 import com.iraqsofit.speedoo.models.*;
-import com.iraqsofit.speedoo.repository.NotificationRepository;
 import com.iraqsofit.speedoo.service.AddressServer;
 import com.iraqsofit.speedoo.service.HomeAppService;
 import com.iraqsofit.speedoo.service.NotificationService;
 import com.iraqsofit.speedoo.service.UserDateilsService;
-import com.iraqsofit.speedoo.user.UserImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 

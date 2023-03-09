@@ -24,7 +24,7 @@ public class NotificationService {
     @Autowired
     NotificationRepository repository;
     private String appId ="17490aa8-8263-4e19-afc9-8cb7cfd359fb";
-    private String message = "Testing";
+    private String message = "طلبك قيد المراجعة , شكرا ";
 
     public List<NotificationModel> getNotifications(Integer pageNo, Integer pageSize, String sortBy) {
         Pageable paging = PageRequest.of(pageNo, pageSize, Sort.by(sortBy));

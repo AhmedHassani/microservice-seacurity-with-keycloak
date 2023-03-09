@@ -1,11 +1,9 @@
 package com.iraqsofit.speedoo.models;
-
 import javax.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
-
 import java.sql.Timestamp;
 import java.util.Date;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -44,6 +42,7 @@ public class ProductsModel {
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "product_id")
     private Set<Media> media;
+
 
     public ProductsModel(long id, String name, String description, Date createdAt, String category, Double price, Integer quantity, Double discount, float rate, Set<Media> media) {
         this.id = id;
@@ -149,4 +148,5 @@ public class ProductsModel {
     public void setRate(float rate) {
         this.rate = rate;
     }
+
 }
