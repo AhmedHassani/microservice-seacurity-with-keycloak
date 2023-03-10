@@ -23,11 +23,16 @@ public class AddressInfo{
     @Column(nullable = false)
     private String address;
 
-    public AddressInfo(String username, String location, String city, String address) {
+    @Column(nullable = false)
+    private String name;
+
+
+    public AddressInfo(String username, String location, String city, String address,String name) {
         this.username = username;
         this.location = location;
         this.city = city;
         this.address = address;
+        this.name = name;
     }
 
     public AddressInfo() {
@@ -72,5 +77,13 @@ public class AddressInfo{
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }
