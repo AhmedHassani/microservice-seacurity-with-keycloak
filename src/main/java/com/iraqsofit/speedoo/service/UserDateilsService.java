@@ -62,7 +62,7 @@ public class UserDateilsService implements UserDetailsService {
             } else {
                 //long userId, String location, String city, String address
                 UserImp newUser = userRepository.save(userImp);
-                addressServer.save(new AddressInfo(newUser.getUsername(),newUser.getLocation(),newUser.getCity(),newUser.getAddress()));
+                addressServer.save(new AddressInfo(newUser.getUsername(),newUser.getLocation(),newUser.getCity(),newUser.getAddress(),"الاساسي"));
                 return newUser;
             }
         } catch (NoSuchElementException exception) {
