@@ -1,7 +1,5 @@
 package com.iraqsofit.speedoo.controller;
-import com.iraqsofit.speedoo.models.Media;
 import com.iraqsofit.speedoo.models.ProductsModel;
-import com.iraqsofit.speedoo.models.Response;
 import com.iraqsofit.speedoo.service.ProductsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -9,8 +7,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
-import java.util.HashSet;
-import java.util.Set;
 
 
 @RestController
@@ -59,7 +55,7 @@ public class ProductsController {
     )
     public ResponseEntity addProduct(@Valid ProductsModel productsModel) {
         productsModel.setCreatedAt();
-       /* Set<Media> mediaSet = new HashSet<Media>();
+        /* Set<Media> mediaSet = new HashSet<Media>();
         mediaSet.add(new Media());
         productsModel.setMedia(mediaSet);*/
         return new ResponseEntity(productsService.addProduct(productsModel), HttpStatus.CREATED);
@@ -74,7 +70,6 @@ public class ProductsController {
     public ResponseEntity deleteProduct(@PathVariable long id) {
         return new ResponseEntity(productsService.deleteProduct(id), HttpStatus.OK);
     }
-
 
     @GetMapping("/product/search/{q}")
     public ResponseEntity deleteProduct(@PathVariable String q,
