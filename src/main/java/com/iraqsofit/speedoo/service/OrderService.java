@@ -41,6 +41,7 @@ public class OrderService {
         orders.setAddressId(initOrders.getAddressId());
         orders.setDate(initOrders.getDate().toString());
         orders.setDiscountCode(initOrders.getDiscountCode());
+        orders.setNote(initOrders.getNote());
         orders.setMassage("الطلب قيد المراجعة، شكرا");
         for (OrdersProducts products : initOrders.getProductsList()){
             ProductsModel product = productsService.getProduct(products.getId());

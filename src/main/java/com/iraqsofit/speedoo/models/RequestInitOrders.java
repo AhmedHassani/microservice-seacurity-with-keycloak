@@ -1,5 +1,4 @@
 package com.iraqsofit.speedoo.models;
-import javax.persistence.Column;
 import java.util.Date;
 import java.util.List;
 
@@ -13,14 +12,17 @@ public class RequestInitOrders {
 
     private Date date;
 
+    private String note;
+
     private List<OrdersProducts> productsList;
 
-    public RequestInitOrders(String username, String discountCode, long addressId, List<OrdersProducts> productsList) {
+    public RequestInitOrders(String username, String discountCode, long addressId, List<OrdersProducts> productsList,String note) {
         this.username = username;
         this.discountCode = discountCode;
         this.addressId = addressId;
         this.date = new Date();
         this.productsList = productsList;
+        this.note =note;
     }
 
     public RequestInitOrders() {
@@ -65,6 +67,14 @@ public class RequestInitOrders {
 
     public void setProductsList(List<OrdersProducts> productsList) {
         this.productsList = productsList;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
     }
 }
 

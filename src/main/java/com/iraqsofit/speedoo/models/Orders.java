@@ -43,10 +43,13 @@ public class Orders {
     @Column(name = "zcImage")
     private String zcImage;
 
+    @Column(name = "note")
+    private String note;
+
     @OneToMany()
     List<ProductsModel> products;
 
-    public Orders(String username, String statesOrder, long addressId, String date, double totalPrice, String discountCode, double price, String massage, List<ProductsModel> productsModels) {
+    public Orders(String username, String statesOrder, long addressId, String date, double totalPrice, String discountCode, double price, String massage, List<ProductsModel> productsModels,String note) {
         this.username = username;
         this.statesOrder = statesOrder;
         this.addressId = addressId;
@@ -56,6 +59,7 @@ public class Orders {
         this.price = price;
         this.massage = massage;
         this.products  = productsModels;
+        this.note=note;
     }
 
     public Orders() {
@@ -155,5 +159,13 @@ public class Orders {
 
     public void setProductsModels(List<ProductsModel> productsModels) {
         this.products  = productsModels;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
     }
 }
