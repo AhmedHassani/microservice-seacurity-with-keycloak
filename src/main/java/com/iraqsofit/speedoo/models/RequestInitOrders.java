@@ -14,14 +14,14 @@ public class RequestInitOrders {
 
     private String note;
 
-    private List<OrdersProducts> productsList;
+    private List<OrderItem>  orderItemList;
 
-    public RequestInitOrders(String username, String discountCode, long addressId, List<OrdersProducts> productsList,String note) {
+    public RequestInitOrders(String username, String discountCode, long addressId,List<OrderItem>  orderItemList,String note) {
         this.username = username;
         this.discountCode = discountCode;
         this.addressId = addressId;
         this.date = new Date();
-        this.productsList = productsList;
+        this.orderItemList = orderItemList;
         this.note =note;
     }
 
@@ -61,12 +61,12 @@ public class RequestInitOrders {
         this.date = date;
     }
 
-    public List<OrdersProducts> getProductsList() {
-        return productsList;
+    public List<OrderItem> getOrderItemList() {
+        return orderItemList;
     }
 
-    public void setProductsList(List<OrdersProducts> productsList) {
-        this.productsList = productsList;
+    public void setOrderItemList(List<OrderItem> orderItemList) {
+        this.orderItemList = orderItemList;
     }
 
     public String getNote() {

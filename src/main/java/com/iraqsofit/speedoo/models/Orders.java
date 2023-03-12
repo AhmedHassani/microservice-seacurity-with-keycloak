@@ -1,5 +1,6 @@
 package com.iraqsofit.speedoo.models;
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -46,10 +47,10 @@ public class Orders {
     @Column(name = "note")
     private String note;
 
-    @OneToMany()
-    List<ProductsModel> products;
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<OrderItem> orderItems = new ArrayList<>();
 
-    public Orders(String username, String statesOrder, long addressId, String date, double totalPrice, String discountCode, double price, String massage, List<ProductsModel> productsModels,String note) {
+    public Orders(String username, String statesOrder, long addressId, String date, double totalPrice, String discountCode, double price, String massage,String note) {
         this.username = username;
         this.statesOrder = statesOrder;
         this.addressId = addressId;
@@ -58,7 +59,6 @@ public class Orders {
         this.discountCode = discountCode;
         this.price = price;
         this.massage = massage;
-        this.products  = productsModels;
         this.note=note;
     }
 
@@ -102,6 +102,7 @@ public class Orders {
     }
 
     public void setDate(String date) {
+
         this.date = date;
     }
 
@@ -153,19 +154,19 @@ public class Orders {
         this.zcImage = zcImage;
     }
 
-    public List<ProductsModel> getProductsModels() {
-        return products ;
-    }
-
-    public void setProductsModels(List<ProductsModel> productsModels) {
-        this.products  = productsModels;
-    }
-
     public String getNote() {
         return note;
     }
 
     public void setNote(String note) {
         this.note = note;
+    }
+
+    public List<OrderItem> getOrderItems() {
+        return orderItems;
+    }
+
+    public void setOrderItems(List<OrderItem> orderItems) {
+        this.orderItems = orderItems;
     }
 }

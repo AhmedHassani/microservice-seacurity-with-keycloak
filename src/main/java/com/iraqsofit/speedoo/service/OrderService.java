@@ -1,10 +1,7 @@
 package com.iraqsofit.speedoo.service;
 
 import com.iraqsofit.speedoo.exception.NotFoundException;
-import com.iraqsofit.speedoo.models.Orders;
-import com.iraqsofit.speedoo.models.OrdersProducts;
-import com.iraqsofit.speedoo.models.ProductsModel;
-import com.iraqsofit.speedoo.models.RequestInitOrders;
+import com.iraqsofit.speedoo.models.*;
 import com.iraqsofit.speedoo.repository.OrdersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -33,7 +30,7 @@ public class OrderService {
         if(initOrders.getUsername().isEmpty()){
             throw new NotFoundException("username not found !");
         }
-        if(initOrders.getProductsList().isEmpty()){
+        if(initOrders.getOrderItemList().isEmpty()){
             throw new NotFoundException("empty order ");
         }
         Orders orders = new Orders();
@@ -46,10 +43,10 @@ public class OrderService {
         orders.setDiscountCode(initOrders.getDiscountCode());
         orders.setNote(initOrders.getNote());
         orders.setMassage("الطلب قيد المراجعة، شكرا");
-        for (OrdersProducts products : initOrders.getProductsList()){
-            ProductsModel product = productsService.getProduct(products.getId());
-            price += (product.getPrice() * (1-product.getDiscount())) * products.getQuantity();
-            totalPrice += product.getPrice() * products.getQuantity();
+        for (OrderItem orderItem : initOrders.getOrderItemList()){
+            ProductsModel product = productsService.getProduct(orderItem.getProduct().getId());
+            price += (product.getPrice() * (1-product.getDiscount())) * orderItem.getQuantity();
+            totalPrice += product.getPrice() * orderItem.getQuantity();
             productsModels.add(product);
         }
         if(checkCode(initOrders.getDiscountCode())==true){
@@ -59,9 +56,8 @@ public class OrderService {
             orders.setTotalPrice(totalPrice);
         }
         orders.setPrice(price);
-        //
-        orders.setProductsModels(productsModels);
-         return ordersRepository.save(orders);
+        orders.setOrderItems(initOrders.getOrderItemList());
+        return ordersRepository.save(orders);
     }
 
     private boolean checkCode(String code) {
