@@ -13,6 +13,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.lang.reflect.Array;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,7 +40,9 @@ public class OrderService {
         orders.setUsername(initOrders.getUsername());
         orders.setStatesOrder("1");
         orders.setAddressId(initOrders.getAddressId());
-        orders.setDate(initOrders.getDate().toString());
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("YYYY-DD-MM HH:MM:SS");
+        String date = simpleDateFormat.format(initOrders.getDate());
+        orders.setDate(date);
         orders.setDiscountCode(initOrders.getDiscountCode());
         orders.setNote(initOrders.getNote());
         orders.setMassage("الطلب قيد المراجعة، شكرا");
