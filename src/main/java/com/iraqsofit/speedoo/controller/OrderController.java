@@ -8,10 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
-import java.text.SimpleDateFormat;
-import java.util.*;
-
 @Controller
 @RequestMapping("/api/gemstone/v1/order")
 public class OrderController {
@@ -22,6 +18,7 @@ public class OrderController {
     NotificationService notificationService;
 
     @PostMapping(value = "/initOrder")
+    // Initializing an order.
     public ResponseEntity initOrder(@RequestBody  RequestInitOrders requestInitOrders,@RequestHeader("playerId") String playerId) {
         if(!playerId.isEmpty()){
             notificationService.sentNotification(playerId,false);
@@ -31,6 +28,7 @@ public class OrderController {
 
 
     @GetMapping(value = {"/lastOrder/{username}"})
+    // A method that returns the last order of a user.
     public ResponseEntity lastOrder(
             @PathVariable String username,
             @RequestParam(defaultValue = "0") Integer pageNo,
@@ -41,6 +39,7 @@ public class OrderController {
 
 
     @DeleteMapping(value = {"/delete/{id}"})
+    // Deleting an order.
     public ResponseEntity delete(@PathVariable long id){
         return new ResponseEntity<>(orderService.deleteOrder(id),HttpStatus.OK);
     }

@@ -8,8 +8,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-
-import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -44,9 +42,9 @@ public class OrderService {
         orders.setNote(initOrders.getNote());
         orders.setMassage("الطلب قيد المراجعة، شكرا");
         for (OrderItem orderItem : initOrders.getOrderItemList()){
-            ProductsModel product = productsService.getProduct(orderItem.getProduct().getId());
-            price += (product.getPrice() * (1-product.getDiscount())) * orderItem.getQuantity();
-            totalPrice += product.getPrice() * orderItem.getQuantity();
+            ProductsModel product = productsService.getProduct(orderItem.getProductId());
+            price += (product.getPrice() * (1-product.getDiscount())) * orderItem.getQuantityItemInOrder();
+            totalPrice += product.getPrice() * orderItem.getQuantityItemInOrder();
             productsModels.add(product);
         }
         if(checkCode(initOrders.getDiscountCode())==true){
