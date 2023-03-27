@@ -3,6 +3,7 @@ package com.iraqsofit.speedoo.service;
 import com.iraqsofit.speedoo.exception.NotFoundException;
 import com.iraqsofit.speedoo.models.*;
 import com.iraqsofit.speedoo.repository.OrdersRepository;
+import net.bytebuddy.implementation.bytecode.Throw;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -82,6 +83,26 @@ public class OrderService {
         return false;
     }
 
+        public Orders updateOrderPayment(String path,long id){
+        if(ordersRepository.existsById(id)){
+            Orders order = ordersRepository.findById(id).get();
+            order.setPaymentType("ZAINCASH");
+            order.setZcImage(path);
+            order.setStatesOrder("2");
+            return ordersRepository.save(order);
+        }else {
+            throw new NotFoundException("this order not found !");
+        }
+    }
 
 
+    public Orders updateOrderCancel(long id) {
+        if(ordersRepository.existsById(id)){
+            Orders order = ordersRepository.findById(id).get();
+            order.setStatesOrder("0");
+            return ordersRepository.save(order);
+        }else {
+            throw new NotFoundException("this order not found !");
+        }
+    }
 }
